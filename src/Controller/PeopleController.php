@@ -106,11 +106,10 @@ class PeopleController extends Controller
         return $students;
     }
     private function getTeams() {
-        $teams = [];
         $storage = json_decode($this->getStorage(), true);
-        foreach ($storage as $team => $teamData) {
-            $teams[] = strtolower($team);
-        }
+        $storage = array_change_key_case($storage);
+        $teams = array_keys($storage);
+
         return $teams;
     }
 }
